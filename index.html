@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  
+  <title>Frontend Mentor | Interactive rating component</title>
+
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Rating state start -->
+<main class="Card" id="rating-card">
+
+<div class="circle-bg">
+<img src="images/icon-star.svg" alt="Star" class="starimg"/> 
+</div>
+
+<h1 class="title">How did we do?</h1>
+
+  <p class="prograph">Please let us know how we did with your support<br> request. All feedback is appreciated 
+  to help us<br> improve our offering!</p>
+
+  <div class="NumbersAtCircle">
+  <div class="Numbers">1</div>
+   <div class="Numbers">2</div> 
+   <div class="Numbers">3</div>
+   <div class="Numbers">4</div>
+   <div class="Numbers">5</div>  
+</div>
+
+<button >Submit</button>
+
+</main>
+  <!-- Rating state end -->
+
+  <!-- Thank you state start -->
+<div class="Card2" id="thank-you-card">
+  <img src="images/illustration-thank-you.svg" alt="Thank you" class="thank-you-img"/>
+
+  <div class="selected-badge">
+  You selected <span id="selected-result">0</span> out of 5
+  </div>
+
+  <h2 class="title2">Thank you!</h2>
+
+  <p class="prograph2"> We appreciate you taking the time to give a rating. If you ever need more support, 
+  don’t hesitate to get in touch!</p>
+</div>
+  <!-- Thank you state end -->
+
+  <!--
+  <footer class="attribution">
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge">Frontend Mentor</a>. 
+    Coded by <a href="#">Your Name Here</a>.
+  </footer>
+  -->
+  <script>
+
+    let numbers=document.querySelectorAll('.Numbers');
+    let submitBtn=document.querySelector('button');
+    let ratingCard=document.querySelector('#rating-card');
+    let thankYouCard=document.querySelector('#thank-you-card');
+    let selectedresult=document.querySelector('#selected-result');
+
+    let selectedRating=null;
+
+   numbers.forEach(number =>{
+    number.addEventListener('click',function(){
+      numbers.forEach(n => n.classList.remove('selected'));
+
+      this.classList.add('selected');
+
+      selectedRating=this.textContent;
+    });
+   });
+
+   submitBtn.addEventListener('click',function(){
+  
+    if(selectedRating){
+      selectedresult.textContent=selectedRating;
+
+      ratingCard.style.display='none';
+      thankYouCard.classList.add('active');
+    }
+    else{
+      alert('Please select a rating from 1 to 5 first!');
+    }
+   })
+  </script>
+</body>
+</html>
